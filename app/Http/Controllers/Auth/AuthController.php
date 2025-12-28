@@ -8,19 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class AuthenticatedSessionController extends Controller
+class AuthController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create()
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
@@ -34,14 +28,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json([
-            'message' => 'Login successful',
-        ]);
+        return redirect()->route('task-managments.index');
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
@@ -50,7 +39,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
 

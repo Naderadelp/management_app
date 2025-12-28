@@ -8,19 +8,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class RegisteredUserController extends Controller
+class RegisterController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
     public function create()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     */
     public function store(RegisterRequest $request)
     {
         $user = User::create([
@@ -33,8 +27,6 @@ class RegisteredUserController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json([
-            'message' => 'Registration successful',
-        ]);
+        return redirect()->route('task-managments.index');
     }
 }
