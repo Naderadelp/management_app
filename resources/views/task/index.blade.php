@@ -29,22 +29,26 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4 py-8">
-        <div class="mb-6 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Task Management</h1>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Task Management</h1>
             <div class="flex gap-3">
-                <a href="{{ route('task-managments.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">
-                    Create New Task
+                <a href="{{ route('task-managments.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg text-sm">
+                    + New Task
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-sm">
                         Logout
                     </button>
                 </form>
             </div>
         </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
 
         @if(session('success'))
             <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 dark:bg-green-900 dark:border-green-700 dark:text-green-200">
@@ -84,8 +88,8 @@
                                 View
                             </a>
                             <a href="{{ route('task-managments.edit', $task->id) }}"
-                               class="flex-1 bg-yellow-600 hover:bg-yellow-700 text-white text-center font-medium py-2 px-4 rounded-lg transition">
-                                Update
+                               class="flex-1 bg-gray-600 hover:bg-gray-700 text-white text-center font-medium py-2 px-4 rounded-lg transition">
+                                Edit
                             </a>
                             <form method="POST" action="{{ route('task-managments.destroy', $task->id) }}" class="flex-1"
                                   onsubmit="return confirm('Are you sure you want to delete this task?');">

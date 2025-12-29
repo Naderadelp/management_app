@@ -29,13 +29,26 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4 py-8 max-w-2xl">
-        <div class="mb-6">
-            <a href="{{ route('task-managments.index') }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 mb-4 inline-block">
-                ← Back to Tasks
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="{{ route('task-managments.index') }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Tasks
             </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-sm">
+                    Logout
+                </button>
+            </form>
         </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
 
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 border border-gray-200 dark:border-gray-700">
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Edit Task</h1>
@@ -98,7 +111,7 @@
 
                 <div class="flex gap-4">
                     <button type="submit"
-                            class="bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2.5 px-6 rounded-lg transition focus:outline-none focus:ring-4 focus:ring-yellow-300">
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg transition focus:outline-none focus:ring-4 focus:ring-blue-300">
                         Update Task
                     </button>
                     <a href="{{ route('task-managments.index') }}"
