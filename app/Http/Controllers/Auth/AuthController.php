@@ -18,9 +18,8 @@ class AuthController extends Controller
     public function store(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        $remember = $request->filled('remember');
 
-        if (! Auth::attempt($credentials, $remember)) {
+        if (! Auth::attempt($credentials)) {
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
@@ -33,11 +32,7 @@ class AuthController extends Controller
 
     public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
 
         return redirect('/login');
     }
